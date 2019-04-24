@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
-import { Router } from '@angular/router';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-card',
@@ -9,18 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HeroCardComponent implements OnInit {
   @Input() hero: Hero;
-  @Output() deleteEvent = new EventEmitter<Hero>();
 
-  constructor(private router: Router) { }
+  constructor(
+    private heroService: HeroService) { }
 
   ngOnInit() {
   }
 
-  edit(id: number) {
-    this.router.navigate([`/detail/${id}`]);
-  }
   delete(hero: Hero) {
-    this.deleteEvent.emit(hero);
+    this.heroService.heroesList = this.heroService.heroesList.filter(h => h !== hero);
+    this.heroService.deleteHero(hero).subscribe();
   }
 
 }

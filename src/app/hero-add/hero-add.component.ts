@@ -1,4 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
+import { Hero } from '../hero';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-hero-add',
@@ -6,15 +9,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./hero-add.component.css']
 })
 export class HeroAddComponent implements OnInit {
-  @Output() addEvent = new EventEmitter<string>();
+  powers = [
+    'Really Smart', 'Super Flexible',
+    'Super Hot', 'Weather Changer'];
+  hero: Hero = new Hero();
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
   }
 
-  add(name: string) {
-    this.addEvent.emit(name);
+  add(heroForm: NgForm) {
+    this.heroService.addHero(heroForm.value)
+    .subscribe(hero => {
+      this.heroService.heroesList.push(hero);
+    });
+    heroForm.resetForm();
   }
 
 }

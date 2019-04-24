@@ -1,6 +1,31 @@
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
-  <button (click)="add(heroName.value); heroName.value =''">Add</button>
-</div>
+<mat-card class="card" fxLayout="column" fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="100%" fxFlex.lt-sm="100%">
+  <mat-card-header>
+    <mat-card-title>Hero Form</mat-card-title>
+  </mat-card-header>
+
+  <form fxLayout.lt-sm="column" #heroForm="ngForm" (ngSubmit)="heroForm.form.valid && add(heroForm)" novalidate>
+    <mat-form-field>
+      <mat-label>Hero Name</mat-label>
+      <input matInput #name="ngModel" [(ngModel)]="hero.name" name="name" required>
+      <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Alter Ego</mat-label>
+      <input matInput #alterego="ngModel" [(ngModel)]="hero.alterego" name="alterego" required>
+      <mat-error *ngIf="name.hasError('required')">Alter Ego is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Hero Power</mat-label>
+      <mat-select #power="ngModel" [(ngModel)]="hero.power" name="power" required>
+        <mat-option *ngFor="let power of powers" [value]="power">{{power}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="power.hasError('required')">Power is required</mat-error>
+    </mat-form-field>
+    <div>
+        <button mat-raised-button type="button" color="accent" (click)="heroForm.resetForm()">Clear</button>
+      <button mat-raised-button type="submit" color="primary">Add</button>
+    </div>
+  </form>
+</mat-card>

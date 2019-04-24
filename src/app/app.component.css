@@ -1,3 +1,8 @@
 .sidenav {
   padding: 30px;
 }
+
+mat-sidenav-container {
+  min-height: 100%;
+  position: relative;
+}

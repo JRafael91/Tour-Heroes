@@ -1,0 +1,14 @@
+.card {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 2px solid;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+button {
+  margin-right: 12px;
+}

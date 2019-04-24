@@ -1,13 +1,3 @@
-<mat-toolbar color="primary">
-  <button mat-button (click)="sidenav.toggle()">
-    <i class="material-icons">
-      menu
-    </i>
-  </button>
-  <img src="../assets//logoA.png" alt="" height=50px width=50px;>
-  <h1>{{ title }}!</h1>
-</mat-toolbar>
-
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav mode="side" role="navigation" class="sidenav">
@@ -19,6 +9,16 @@
   </mat-sidenav>
 
   <mat-sidenav-content role="main">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <img src="../assets/logoA.png" alt="" height=50px width=50px;>
+        <h1>{{ title }}!</h1>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
     <router-outlet></router-outlet>
     <app-messages></app-messages>
   </mat-sidenav-content>

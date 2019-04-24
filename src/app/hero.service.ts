@@ -34,13 +34,13 @@ export class HeroService {
 
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero : Hero)=> this.log(`added Hero w/ id=${newHero.id}`)),
+      tap((newHero: Hero) => this.log(`added Hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
 
   updateHero(hero: Hero): Observable<Hero> {
-    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+    return this.http.put<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
@@ -69,7 +69,7 @@ export class HeroService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure

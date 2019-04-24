@@ -1,11 +1,30 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Detail</h2>
-  <div><span>id: </span>{{hero.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" type="text" placeholder="Name">
-    </label>
-  </div>
-  <button (click)="goBack()">Go Back</button>
-  <button (click)="save()">Save</button>
-</div>
+<mat-card class="card" fxLayout="column" fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="100%" fxFlex.lt-sm="100%">
+  <mat-card-header>
+    <mat-card-title>{{hero.name | uppercase}} Detail</mat-card-title>
+    <mat-card-subtitle><strong>id: {{hero.id}}</strong></mat-card-subtitle>
+  </mat-card-header>
+
+  <form fxLayout.lt-sm="column" #heroForm="ngForm" (ngSubmit)="heroForm.form.valid && save(heroForm)" novalidate>
+    <input type="hidden" [(ngModel)]="hero.id" name="id">
+    <mat-form-field>
+      <mat-label>Hero Name</mat-label>
+      <input matInput #name="ngModel" [(ngModel)]="hero.name" name="name" required>
+      <mat-error *ngIf="name.hasError('required')">Name is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Alter Ego</mat-label>
+      <input matInput #alterego="ngModel" [(ngModel)]="hero.alterego" name="alterego" required>
+      <mat-error *ngIf="alterego.hasError('required')">Alter Ego is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Power</mat-label>
+      <input matInput #power="ngModel" [(ngModel)]="hero.power" name="power" required>
+      <mat-error *ngIf="power.hasError('required')">Power is Required</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button type="button" color="accent" (click)="goBack()">Go Back</button>
+      <button mat-raised-button type="submit" color="primary">Save</button>
+    </div>
+
+  </form>
+</mat-card>

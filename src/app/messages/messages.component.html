@@ -1,13 +1,1 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Messages
-      </mat-panel-title>
-      <mat-panel-description>
-        {{messageService.messages.length}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <p *ngFor="let message of messageService.messages">{{message}}</p>
-
-</mat-expansion-panel>
+<p *ngFor="let message of messageService.messages">{{message}}</p>

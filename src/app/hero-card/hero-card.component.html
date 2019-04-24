@@ -4,15 +4,16 @@
       <mat-card-subtitle>{{hero.id}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>The Best Hero..!</p>
+      <p>Alter Ego: {{hero.alterego}}</p>
+      <p>Power: {{hero.power}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="edit(hero.id)" color="primary">
-        <i class="material-icons">create</i>
+      <a mat-button routerLink="/detail/{{hero.id}}" color="primary">
+        <mat-icon>create</mat-icon>
         Edit
-      </button>
+      </a>
       <button mat-button (click)="delete(hero)" color="warn">
-        <i class="material-icons">delete</i>
+        <mat-icon>delete</mat-icon>
         Delete
       </button>
     </mat-card-actions>

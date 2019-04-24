@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroCardComponent } from './hero-card/hero-card.component';
 import { HeroAddComponent } from './hero-add/hero-add.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HeroAddComponent } from './hero-add/hero-add.component';
     DashboardComponent,
     HeroSearchComponent,
     HeroCardComponent,
-    HeroAddComponent
+    HeroAddComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,
