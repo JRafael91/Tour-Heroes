@@ -8,7 +8,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-card.component.css']
 })
 export class HeroCardComponent implements OnInit {
-  @Input() hero: Hero;
+  @Input() hero: Hero = new Hero();
 
   constructor(
     private heroService: HeroService) { }
