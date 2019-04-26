@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 // Modules
 import { AppMaterialModule } from './app-material.module';
@@ -37,6 +41,8 @@ import { AboutComponent } from './about/about.component';
     AboutComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase, 'tour-heroes'),
+    AngularFireDatabaseModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,

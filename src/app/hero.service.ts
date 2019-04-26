@@ -4,18 +4,20 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AngularFireDatabase } from '@angular/fire/database';
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
   private heroesUrl = 'api/heroes';  // URL to web api
-  heroesList: Hero[];
+  heroesList: Observable<Hero[]>;
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
   constructor(
     private http: HttpClient,
+    private db: AngularFireDatabase,
     private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
