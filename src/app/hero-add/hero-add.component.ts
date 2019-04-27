@@ -19,8 +19,12 @@ export class HeroAddComponent implements OnInit {
   }
 
   add(heroForm: NgForm) {
-    this.heroService.addHero(heroForm.value);
-    heroForm.resetForm();
+    this.heroService.addHero(heroForm.value)
+    .then(_ => {
+      console.log('added success');
+      heroForm.resetForm();
+    })
+    .catch(err => console.log(err, 'You do not have access'));
   }
 
 }

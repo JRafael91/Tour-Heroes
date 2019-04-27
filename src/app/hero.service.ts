@@ -15,21 +15,17 @@ export class HeroService {
   }
 
   addHero(hero: Hero) {
-    this.db.list('heroes').push({
+    return this.db.list('heroes').push({
       name: hero.name,
       alterego: hero.alterego,
-      power: hero.power })
-    .then(_ => console.log('added success'))
-    .catch(err => console.log(err, 'You do not have access'));
+      power: hero.power });
   }
 
   updateHero(hero: Hero, $key: string) {
-    this.db.list('heroes').update($key, {
+    return this.db.list('heroes').update($key, {
       name: hero.name,
       alterego: hero.alterego,
-      power: hero.power})
-    .then(_ => console.log('updated success'))
-    .catch(err => console.log(err, 'You do not have success'));
+      power: hero.power});
   }
 
   deleteHero($key: string) {
