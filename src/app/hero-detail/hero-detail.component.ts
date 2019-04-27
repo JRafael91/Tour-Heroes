@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { HeroService } from '../hero.service';
 import { NgForm } from '@angular/forms';
 
@@ -15,28 +14,26 @@ export class HeroDetailComponent implements OnInit {
   hero: Hero = new Hero();
 
   constructor(
-    private route: ActivatedRoute,
-    private heroService: HeroService,
-    private location: Location
+    public heroService: HeroService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.getHero();
   }
 
-  getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+  getHero() {
+    return console.warn('in process');
   }
 
-  goBack(): void {
-    this.location.back();
+  goBack() {
+    this.heroService.selectedHero = new Hero();
+    this.router.navigate(['heroes']);
   }
 
   save(heroForm: NgForm) {
-    this.heroService.updateHero(heroForm.value)
-      .subscribe(() => this.goBack());
+    const $key = this.heroService.selectedHero.$key;
+    this.heroService.updateHero(heroForm.value, $key);
+    this.goBack();
   }
 
 }

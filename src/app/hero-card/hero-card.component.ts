@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-card',
@@ -11,14 +12,17 @@ export class HeroCardComponent implements OnInit {
   @Input() hero: Hero = new Hero();
 
   constructor(
-    private heroService: HeroService) { }
+    private heroService: HeroService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  delete(hero: Hero) {
-    this.heroService.heroesList = this.heroService.heroesList.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+  detail(hero: Hero) {
+    this.router.navigate([`detail/${hero.$key}`]);
+    this.heroService.selectedHero = hero;
   }
-
+  delete(hero: Hero) {
+    this.heroService.deleteHero(hero.$key);
+  }
 }

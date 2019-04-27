@@ -5,20 +5,19 @@
   </mat-card-header>
 
   <form fxLayout.lt-sm="column" #heroForm="ngForm" (ngSubmit)="heroForm.form.valid && save(heroForm)" novalidate>
-    <input type="hidden" [(ngModel)]="hero.id" name="id">
     <mat-form-field>
       <mat-label>Hero Name</mat-label>
-      <input matInput #name="ngModel" [(ngModel)]="hero.name" name="name" required>
+      <input matInput #name="ngModel" [(ngModel)]="heroService.selectedHero.name" name="name" required>
       <mat-error *ngIf="name.hasError('required')">Name is Required</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Alter Ego</mat-label>
-      <input matInput #alterego="ngModel" [(ngModel)]="hero.alterego" name="alterego" required>
+      <input matInput #alterego="ngModel" [(ngModel)]="heroService.selectedHero.alterego" name="alterego" required>
       <mat-error *ngIf="alterego.hasError('required')">Alter Ego is Required</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Power</mat-label>
-      <input matInput #power="ngModel" [(ngModel)]="hero.power" name="power" required>
+      <input matInput #power="ngModel" [(ngModel)]="heroService.selectedHero.power" name="power" required>
       <mat-error *ngIf="power.hasError('required')">Power is Required</mat-error>
     </mat-form-field>
     <div>

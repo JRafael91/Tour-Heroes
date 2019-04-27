@@ -10,20 +10,16 @@ import { NgForm } from '@angular/forms';
 })
 export class HeroAddComponent implements OnInit {
   powers = [
-    'Really Smart', 'Super Flexible',
-    'Super Hot', 'Weather Changer'];
-  hero: Hero = new Hero();
+    'SuperHuman', 'Magical Powers',
+    'PSI-Shields', 'Mutant'];
 
-  constructor(private heroService: HeroService) { }
+  constructor(public heroService: HeroService) { }
 
   ngOnInit() {
   }
 
   add(heroForm: NgForm) {
-    this.heroService.addHero(heroForm.value)
-    .subscribe(hero => {
-      this.heroService.heroesList.push(hero);
-    });
+    this.heroService.addHero(heroForm.value);
     heroForm.resetForm();
   }
 

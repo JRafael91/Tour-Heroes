@@ -1,6 +1,6 @@
 export class Hero {
 
-  id: number;
+  $key: string;
   name: string;
   power: string;
   alterego: string;

@@ -7,7 +7,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-
+  heroesList: Hero[];
 
   constructor(
     public heroService: HeroService) { }
@@ -16,7 +16,14 @@ export class HeroesComponent implements OnInit {
     this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroService.heroesList = heroes);
+  getHeroes() {
+    this.heroService.getHeroes().snapshotChanges().subscribe(item => {
+      this.heroesList = [];
+      item.forEach(element => {
+        const hero = element.payload.val();
+        hero.$key = element.key;
+        this.heroesList.push(hero as Hero);
+      });
+    });
   }
 }
