@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
-import { Router } from '@angular/router';
 import { HeroService } from '../hero.service';
 import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hero-detail',
@@ -15,19 +15,10 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     public heroService: HeroService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit() {
-  }
-
-  getHero() {
-    return console.warn('in process');
-  }
-
-  goBack() {
-    this.heroService.selectedHero = new Hero();
-    this.router.navigate(['heroes']);
   }
 
   save(heroForm: NgForm) {
@@ -38,6 +29,11 @@ export class HeroDetailComponent implements OnInit {
       this.goBack();
     })
     .catch(err => console.log(err, 'You do not have success'));
+  }
+
+  goBack() {
+    this.heroService.selectedHero = new Hero();
+    this.location.back();
   }
 
 }

@@ -1,11 +1,18 @@
 <h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4"
-    (click)="detail(hero)">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="start" fxLayoutGap="10px">
+  <mat-card class="card module hero" *ngFor="let hero of heroes; let i = index" (click)="detail(hero)"
+  fxFlex="0 1 calc(33.3% - 32px)"
+  fxFlex.lt-md="0 1 calc(50% - 32px)"
+  fxFlex.lt-sm="100%"
+  >
+    <mat-card-header>
+      <mat-card-title>{{hero.name}} #{{i + 1}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Alter Ego: {{hero.alterego}}</p>
+      <p>Power: {{hero.power}}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <app-hero-search></app-hero-search>

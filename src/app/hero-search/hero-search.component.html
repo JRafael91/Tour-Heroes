@@ -1,12 +1,15 @@
-<div id="search-component">
-  <h4>Hero Search</h4>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul class=search-result>
-    <li *ngFor="let hero of heroes$ | async">
-      <a routerLink="/detail/{{hero.id}}">
+<div fxLayout="column">
+  <mat-form-field fxLayoutAlign="center">
+    <mat-label>Hero Search</mat-label>
+    <input matInput id="searchBox" #searchBox [(ngModel)]="filterHero" />
+  </mat-form-field>
+  <div fxLayoutAlign="center">
+    <mat-list class="search-result">
+      <mat-list-item *ngFor="let hero of (heroes$ | searchHero: filterHero)">
+      <a (click)="detail(hero)">
         {{hero.name}}
       </a>
-    </li>
-  </ul>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>

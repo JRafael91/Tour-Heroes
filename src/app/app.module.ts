@@ -23,6 +23,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroCardComponent } from './hero-card/hero-card.component';
 import { HeroAddComponent } from './hero-add/hero-add.component';
 import { AboutComponent } from './about/about.component';
+//pipe
+import { SearchHeroPipe } from './search-hero.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { AboutComponent } from './about/about.component';
     HeroSearchComponent,
     HeroCardComponent,
     HeroAddComponent,
-    AboutComponent
+    AboutComponent,
+    SearchHeroPipe
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'tour-heroes'),
